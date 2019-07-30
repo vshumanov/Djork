@@ -1,0 +1,37 @@
+{
+    "rooms": {
+        "d_cave": {
+            "name": "Dark Cave",
+            "description": "A cave with little light in it. There is a sign on the wall",
+            "options": {
+                "north": "even_der_cave"
+            },
+            "interactibles": [
+                "d_cave_sign"
+            ]
+        },
+        "even_der_cave": {
+            "name": "Even darker cave",
+            "description": "A cave with even less light in it",
+            "options": {
+                "south": "d_cave",
+                "east": "light_cave"
+            }
+        },
+        "light_cave": {
+            "name": "Light Cave",
+            "description": "A cave with light in it",
+            "options": {
+                "west": "even_der_cave"
+            }
+        }
+    },
+    "interactibles": {
+        "d_cave_sign": {
+            "name": "Sign",
+            "verb": "read",
+            "description": "A wooden sign",
+            "interact": "Go forth to eternal life. Go fifth and get a free toaster."
+        }
+    }
+}
