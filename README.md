@@ -23,6 +23,39 @@ Example.
   }
 ```
 
+Interactables can be defined in the world def file.
+
+
+```json
+"interactables": {
+        "d_cave_sign": {
+            "name": "Sign",
+            "description": "A wooden sign",
+            "interactions": {
+                "read": "Go forth to eternal life. Go fifth and get a free toaster.",
+                "touch": "It feels wooden and kind of damp."
+            }
+        }
+    }
+```
+
+Should be added to each room they are supposed to be in the interactables object for the room.
+
+```json
+ "interactables": {
+                "sign": "d_cave_sign"
+            }
+```
+
+currently defined actions:
+
+- read
+- eat
+- touch
+- use
+- punch
+
+
 Running the game:
 
   Just instantiate the DjorkEngine class and use the fill_rooms method with the json object of the world description.
