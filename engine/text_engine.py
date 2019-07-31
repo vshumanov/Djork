@@ -1,13 +1,13 @@
 import cmd
 from .room import Room
-from .interactibles import Interactible
+from .interactables import Interactable
 
 class DjorkEngine(cmd.Cmd):
     prompt = ">>>"
     def __init__(self):
         super().__init__()
         self.rooms: dict = {}
-        self.interactibles: dict = {}
+        self.interactables: dict = {}
         self.current_room: str = None
 
     def fill_rooms(self, world_desc: dict):
@@ -17,13 +17,13 @@ class DjorkEngine(cmd.Cmd):
             if self.current_room is None:
                 self.current_room = room_name
 
-        for int_name, int_desc in world_desc["interactibles"].items():
-            n_int = Interactible(**int_desc)
-            self.interactibles[int_name] = n_int
+        for int_name, int_desc in world_desc["interactables"].items():
+            n_int = Interactable(**int_desc)
+            self.interactables[int_name] = n_int
 
     def debug_info(self):
         print(f"Rooms :{self.rooms}")
-        print(f"Interactibles: {self.interactibles}")
+        print(f"Interactables: {self.interactables}")
         print(f"Current : {self.current_room}")
         
 
@@ -55,6 +55,19 @@ class DjorkEngine(cmd.Cmd):
         else:
             print("Nothing in that direction")
 
+    def interact_with(self, action, target):
+        c_room = self.rooms[self.current_room]
+        c_int = c_room.interactables.get(target, None)
+        c_int_obj = self.interactables.get(c_int, None)
+        print(c_int_obj)
+        if c_int:
+            if c_int_obj.interactions.get(action, None):
+                print(c_int_obj.interactions[action])
+            else:
+                print("That's a silly thing to do")
+        else:
+            print("No such object around you")
+
     def do_north(self, arg):
         """Move north."""
         self.move_to("north")    
@@ -74,6 +87,44 @@ class DjorkEngine(cmd.Cmd):
     def do_look(self, arg):
         """Look around the current location."""
         self.desc_current_room()
+
+    def do_read(self, arg):
+        """Read something."""
+        self.interact_with(action="read", target=arg)
+
+    def do_eat(self, arg):
+        """Eat something."""
+        self.interact_with(action="eat", target=arg)
+
+    def do_touch(self, arg):
+        """touch something."""
+        self.interact_with(action="touch", target=arg)
+
+    def do_use(self, arg):
+        """Use something."""
+        self.interact_with(action="use", target=arg)
+
+    def do_punch(self, arg):
+        """Punch something."""
+        self.interact_with(action="punch", target=arg)
+
+    def do_inspect(self, arg):
+        """Take a closer look at something."""
+        self.interact_with(action="inspect", target=arg)
+
+    def do_give(self, arg):
+        """Give something to someone.
+        
+        FIXME Pass 2 parameters.
+        """
+        raise NotImplementedError
+
+    def do_take(self, arg):
+        """Take something and put it in your bag.
+        
+        TODO implement inventory.
+        """
+        raise NotImplementedError
 
     def default(self, arg):
         print('I do not understand that command. Type "help" for a list of commands.')

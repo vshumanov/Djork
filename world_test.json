@@ -6,9 +6,9 @@
             "options": {
                 "north": "even_der_cave"
             },
-            "interactibles": [
-                "d_cave_sign"
-            ]
+            "interactables": {
+                "sign": "d_cave_sign"
+            }
         },
         "even_der_cave": {
             "name": "Even darker cave",
@@ -26,12 +26,14 @@
             }
         }
     },
-    "interactibles": {
+    "interactables": {
         "d_cave_sign": {
             "name": "Sign",
-            "verb": "read",
             "description": "A wooden sign",
-            "interact": "Go forth to eternal life. Go fifth and get a free toaster."
+            "interactions": {
+                "read": "Go forth to eternal life. Go fifth and get a free toaster.",
+                "touch": "It feels wooden and kind of damp."
+            }
         }
     }
 }

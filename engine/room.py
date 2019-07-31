@@ -14,7 +14,7 @@ class Room():
         self.name:str = kwargs.get("name")
         self.description:str = kwargs.get("description")
         self.options:dict = kwargs.get("options")
-        self.interactions: list = kwargs.get("interactions")
+        self.interactables: list = kwargs.get("interactables")
         
     def __repr__(self):
         """Used for printing the room on the screen."""
