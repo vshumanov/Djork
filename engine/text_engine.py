@@ -8,14 +8,18 @@ class DjorkEngine(cmd.Cmd):
         super().__init__()
         self.rooms: dict = {}
         self.interactables: dict = {}
-        self.current_room: str = None
+        self._c_room: str = None
+
+    @property
+    def current_room(self):
+        return self.rooms[self._c_room]
 
     def fill_rooms(self, world_desc: dict):
         for room_name, room_desc in world_desc["rooms"].items():
             n_room = Room(**room_desc)
             self.rooms[room_name] = n_room
-            if self.current_room is None:
-                self.current_room = room_name
+            if self._c_room is None:
+                self._c_room = room_name
 
         for int_name, int_desc in world_desc["interactables"].items():
             n_int = Interactable(**int_desc)
@@ -28,38 +32,33 @@ class DjorkEngine(cmd.Cmd):
         
 
     def desc_current_room(self):
-        c_room = self.rooms[self.current_room]
-        desc = f"{c_room.name}\n"
+        desc = f"{self.current_room.name}\n"
         desc += "-" * 60
         desc += "\n"
-        desc += f"{c_room.description} \n"
+        desc += f"{self.current_room.description} \n"
         desc += "-" * 60
         
         print(desc)
         self.print_current_room_options()
 
     def print_current_room_options(self):
-        c_room = self.rooms[self.current_room]
-        for d, op in c_room.options.items():
+        for d, op in self.current_room.options.items():
             print(f"{d}: {self.rooms[op].name}")
 
     def move_to(self, direction:str):
-        c_room = self.rooms[self.current_room]
-        next_room = c_room.options.get(direction, None)
+        next_room = self.current_room.options.get(direction, None)
         if next_room:
-            self.current_room = next_room
-            c_room = self.rooms[self.current_room]
-            print(f"You move to {c_room.name}")
+            self._c_room = next_room
+            print(f"You move to {self.current_room.name}")
             self.desc_current_room()
             # self.debug_info()
         else:
             print("Nothing in that direction")
 
     def interact_with(self, action, target):
-        c_room = self.rooms[self.current_room]
-        c_int = c_room.interactables.get(target, None)
+        c_int = self.current_room.interactables.get(target, None)
         c_int_obj = self.interactables.get(c_int, None)
-        print(c_int_obj)
+        # print(c_int_obj)
         if c_int:
             if c_int_obj.interactions.get(action, None):
                 print(c_int_obj.interactions[action])
@@ -140,3 +139,4 @@ class DjorkEngine(cmd.Cmd):
         for room in self.rooms.values():
             _repr += f"{room.name} : {room.description} {room.options} \n"
         return _repr
+    
