@@ -108,6 +108,10 @@ class DjorkEngine(cmd.Cmd):
         """Punch something."""
         self.interact_with(action="punch", target=arg)
 
+    def do_inspect(self, arg):
+        """Take a closer look at something."""
+        self.interact_with(action="inspect", target=arg)
+
     def do_give(self, arg):
         """Give something to someone.
         
