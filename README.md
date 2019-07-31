@@ -58,19 +58,9 @@ currently defined actions:
 
 Running the game:
 
-  Just instantiate the DjorkEngine class and use the fill_rooms method with the json object of the world description.
-  Then start the cmdloop
+  Run the main script with the world file as argument
   
-``` python
-with open("world_test.json") as world:
-    world_desc = json.load(world)
-
-eng = DjorkEngine()
-eng.fill_rooms(world_desc)
-
-if __name__ == "__main__":
-    eng.debug_info()
-    eng.desc_current_room()
-    eng.cmdloop()
+``` 
+python main.py world_def.json
 ```
 
