@@ -64,6 +64,6 @@ Running the game:
   Run the main script with the world file as argument
   
 ``` 
-python main.py world_def.json
+python main.py world_def.yaml
 ```
 
