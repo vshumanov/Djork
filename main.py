@@ -1,4 +1,4 @@
-import json
+import yaml
 
 from sys import argv, exit
 from engine.text_engine import DjorkEngine
@@ -10,7 +10,7 @@ if __name__ == "__main__":
     world_file = argv[1]
 
     with open(world_file) as world:
-        world_desc = json.load(world)
+        world_desc = yaml.safe_load(world)
 
     eng = DjorkEngine()
     eng.fill_rooms(world_desc)
