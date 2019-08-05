@@ -2,10 +2,9 @@ import cmd
 from .room import Room
 from .interactables import Interactable
 
-class DjorkEngine(cmd.Cmd):
-    prompt = ">>>"
+class DjorkEngine():
+    """Main engine class."""
     def __init__(self):
-        super().__init__()
         self.rooms: dict = {}
         self.interactables: dict = {}
         self._c_room: str = None
@@ -32,13 +31,7 @@ class DjorkEngine(cmd.Cmd):
         
 
     def desc_current_room(self):
-        desc = f"{self.current_room.name}\n"
-        desc += "-" * 60
-        desc += "\n"
-        desc += f"{self.current_room.description} \n"
-        desc += "-" * 60
-        
-        print(desc)
+        self.current_room.describe()
         self.print_current_room_options()
 
     def print_current_room_options(self):
@@ -66,73 +59,6 @@ class DjorkEngine(cmd.Cmd):
                 print("That's a silly thing to do")
         else:
             print("No such object around you")
-
-    def do_north(self, arg):
-        """Move north."""
-        self.move_to("north")    
-       
-    def do_south(self, arg):
-        """Move south."""
-        self.move_to("south")
-
-    def do_west(self, arg):
-        """Move to the west."""
-        self.move_to("west")
-
-    def do_east(self, arg):
-        """Move to the east."""
-        self.move_to("east")
-
-    def do_look(self, arg):
-        """Look around the current location."""
-        self.desc_current_room()
-
-    def do_read(self, arg):
-        """Read something."""
-        self.interact_with(action="read", target=arg)
-
-    def do_eat(self, arg):
-        """Eat something."""
-        self.interact_with(action="eat", target=arg)
-
-    def do_touch(self, arg):
-        """touch something."""
-        self.interact_with(action="touch", target=arg)
-
-    def do_use(self, arg):
-        """Use something."""
-        self.interact_with(action="use", target=arg)
-
-    def do_punch(self, arg):
-        """Punch something."""
-        self.interact_with(action="punch", target=arg)
-
-    def do_inspect(self, arg):
-        """Take a closer look at something."""
-        self.interact_with(action="inspect", target=arg)
-
-    def do_give(self, arg):
-        """Give something to someone.
-        
-        FIXME Pass 2 parameters.
-        """
-        raise NotImplementedError
-
-    def do_take(self, arg):
-        """Take something and put it in your bag.
-        
-        TODO implement inventory.
-        """
-        raise NotImplementedError
-
-    def default(self, arg):
-        print('I do not understand that command. Type "help" for a list of commands.')
-
-    def do_quit(self, arg):
-        """Quit the game."""
-        return True # this exits the Cmd application loop.
-
-
 
     def __repr__(self):
         _repr = ""

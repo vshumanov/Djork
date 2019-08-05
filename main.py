@@ -1,7 +1,9 @@
 import yaml
 
 from sys import argv, exit
+from engine.cli import DjorkCli
 from engine.text_engine import DjorkEngine
+
 
 if __name__ == "__main__":
     if len(argv) < 2:
@@ -16,6 +18,7 @@ if __name__ == "__main__":
     eng.fill_rooms(world_desc)
     # eng.debug_info()
     eng.desc_current_room()
-    eng.cmdloop()
+    cli = DjorkCli(engine=eng)
+    cli.cmdloop()
     
     
