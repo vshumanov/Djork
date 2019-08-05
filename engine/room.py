@@ -30,5 +30,5 @@ class Room():
 
     def __repr__(self):
         """Used for printing the room on the screen."""
-        return f"<Room : {self.name} {self.description} {self.options}>"
+        return f"<Room : {self.name} \n {self.description} \n {self.options}>"
 

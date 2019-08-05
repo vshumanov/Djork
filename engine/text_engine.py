@@ -1,6 +1,7 @@
 import cmd
 from .room import Room
 from .interactables import Interactable
+from .messages import *
 
 class DjorkEngine():
     """Main engine class."""
@@ -28,8 +29,7 @@ class DjorkEngine():
         print(f"Rooms :{self.rooms}")
         print(f"Interactables: {self.interactables}")
         print(f"Current : {self.current_room}")
-        
-
+    
     def desc_current_room(self):
         self.current_room.describe()
         self.print_current_room_options()
@@ -46,7 +46,7 @@ class DjorkEngine():
             self.desc_current_room()
             # self.debug_info()
         else:
-            print("Nothing in that direction")
+            print(NO_WAY)
 
     def interact_with(self, action, target):
         c_int = self.current_room.interactables.get(target, None)
@@ -54,11 +54,15 @@ class DjorkEngine():
         # print(c_int_obj)
         if c_int:
             if c_int_obj.interactions.get(action, None):
-                print(c_int_obj.interactions[action])
+                print(c_int_obj.interactions[action]['text'])                
+                res = c_int_obj.handle_result(action)
+                if res == "end":
+                    print("GAME OVER")
+                    return True
             else:
-                print("That's a silly thing to do")
+                print(NO_ACTION)
         else:
-            print("No such object around you")
+            print(NO_OBJECT)
 
     def __repr__(self):
         _repr = ""

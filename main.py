@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     eng = DjorkEngine()
     eng.fill_rooms(world_desc)
-    # eng.debug_info()
+    eng.debug_info()
     eng.desc_current_room()
     cli = DjorkCli(engine=eng)
     cli.cmdloop()

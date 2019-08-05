@@ -1,11 +1,12 @@
 rooms:
   d_cave:
     name: Dark Cave
-    description: A cave with little light in it. There is a sign on the wall
+    description: A cave with little light in it. There is a sign on the wall. A piece of cheese is on the ground
     options:
       north: even_der_cave
     interactables:
       sign: d_cave_sign
+      cheese : d_cave_cheese
   even_der_cave:
     name: Even darker cave
     description: A cave with even less light in it
@@ -22,5 +23,14 @@ interactables:
     name: Sign
     description: A wooden sign
     interactions:
-      read: Go forth to eternal life. Go fifth and get a free toaster.
-      touch: It feels wooden and kind of damp.
+      read: 
+        text: Go forth to eternal life. Go fifth and get a free toaster.
+      touch: 
+        text: It feels wooden and kind of damp.
+  d_cave_cheese:
+    name: Cheese
+    description: A roll of cheese
+    interactions:
+      eat: 
+        text: The cheese was spoilt.
+        result: death
