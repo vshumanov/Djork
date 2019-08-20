@@ -7,7 +7,7 @@ The engine works with a single world description file in yaml format.
 All the rooms are described in the rooms object. 
 
 Example.
-  
+
 ``` yaml
 
 rooms:
@@ -25,7 +25,6 @@ rooms:
 ```
 
 Interactables can be defined in the world def file.
-
 
 ```yaml
 interactables:
@@ -52,18 +51,17 @@ Should be added to each room they are supposed to be in the interactables object
 
 currently defined actions:
 
-- read
-- eat
-- touch
-- use
-- punch
-
+  - read
+  - eat
+  - touch
+  - use
+  - punch
 
 Running the game:
 
   Run the main script with the world file as argument
   
-``` 
+```bash
 python main.py world_def.yaml
 ```
 
