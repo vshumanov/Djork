@@ -68,7 +68,7 @@ class DjorkCli(cmd.Cmd):
         """
         raise NotImplementedError
 
-    def default(self, arg):
+    def default(self, line):
         print('I do not understand that command. Type "help" for a list of commands.')
 
     def do_quit(self, arg):
