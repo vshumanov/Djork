@@ -1,6 +1,7 @@
 # Djork
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/aae0797f69964cda89616a67163d4ceb)](https://app.codacy.com/app/asanoryu/Djork?utm_source=github.com&utm_medium=referral&utm_content=asanoryu/Djork&utm_campaign=Badge_Grade_Dashboard)
+[![BCH compliance](https://bettercodehub.com/edge/badge/asanoryu/Djork?branch=master)](https://bettercodehub.com/)
 
 Text adventure game engine
 
