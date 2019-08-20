@@ -2,6 +2,7 @@
 import cmd
 from .text_engine import DjorkEngine
 
+
 class DjorkCli(cmd.Cmd):
     prompt = ">>>"
 
@@ -11,8 +12,8 @@ class DjorkCli(cmd.Cmd):
 
     def do_north(self, arg):
         """Move north."""
-        self.engine.move_to("north")    
-       
+        self.engine.move_to("north")
+
     def do_south(self, arg):
         """Move south."""
         self.engine.move_to("south")
@@ -55,14 +56,14 @@ class DjorkCli(cmd.Cmd):
 
     def do_give(self, arg):
         """Give something to someone.
-        
+
         FIXME Pass 2 parameters.
         """
         raise NotImplementedError
 
     def do_take(self, arg):
         """Take something and put it in your bag.
-        
+
         TODO implement inventory.
         """
         raise NotImplementedError
@@ -72,8 +73,4 @@ class DjorkCli(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit the game."""
-        return True # this exits the Cmd application loop.
-
-
-
-    
+        return True  # this exits the Cmd application loop.

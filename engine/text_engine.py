@@ -1,10 +1,11 @@
-import cmd
 from .room import Room
 from .interactables import Interactable
 from .messages import *
 
+
 class DjorkEngine():
     """Main engine class."""
+
     def __init__(self):
         self.rooms: dict = {}
         self.interactables: dict = {}
@@ -29,7 +30,7 @@ class DjorkEngine():
         print(f"Rooms :{self.rooms}")
         print(f"Interactables: {self.interactables}")
         print(f"Current : {self.current_room}")
-    
+
     def desc_current_room(self):
         self.current_room.describe()
         self.print_current_room_options()
@@ -38,7 +39,7 @@ class DjorkEngine():
         for d, op in self.current_room.options.items():
             print(f"{d}: {self.rooms[op].name}")
 
-    def move_to(self, direction:str):
+    def move_to(self, direction: str):
         next_room = self.current_room.options.get(direction, None)
         if next_room:
             self._c_room = next_room
@@ -54,7 +55,7 @@ class DjorkEngine():
         # print(c_int_obj)
         if c_int:
             if c_int_obj.interactions.get(action, None):
-                print(c_int_obj.interactions[action]['text'])                
+                print(c_int_obj.interactions[action]['text'])
                 res = c_int_obj.handle_result(action)
                 if res == "end":
                     print("GAME OVER")
@@ -69,4 +70,3 @@ class DjorkEngine():
         for room in self.rooms.values():
             _repr += f"{room.name} : {room.description} {room.options} \n"
         return _repr
-    
