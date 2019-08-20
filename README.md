@@ -54,11 +54,11 @@ Should be added to each room they are supposed to be in the interactables object
 
 currently defined actions:
 
-  - read
-  - eat
-  - touch
-  - use
-  - punch
+-  read
+-  eat
+-  touch
+-  use
+-  punch
 
 Running the game:
 
